@@ -1,27 +1,33 @@
 class MessageTemplate
-  INPUT_PROMPT    = "Enter your guess:"
-  WELCOME_PLAYER  = "This is Hang Man, you know the deal. You have 12 guesses."
-  WINNING_GUESS   = "You win! Well done, your Mum loves you and thinks you're special"
-  CORRECT_GUESS   = "Your guess was correct!"
-  INCORRECT_GUESS = "Your guess was incorrect, try again."
-
-  def ask_for_player_guess
-    INPUT_PROMPT
+  def welcome
+    "This is Hang Man, you know the deal. You have 12 guesses."
   end
 
-  def welcome_player
-    WELCOME_PLAYER
-  end 
-
-  def report_guess_result(result) 
-    result.matched? ? CORRECT_GUESS : INCORRECT_GUESS
+  def user_input_prompt
+    "Enter your guess: "
   end
 
-  def report_current_progress(player)
-    "Letters already used : #{player.used_letters.join(" ")}\n\n#{player.report_current_progress}"
+  def used_letters_prefix
+    "Letters used: "
   end
 
-  def report_winner
-    WINNING_GUESS
+  def correct_letters_prefix
+    "Correct letters: "
+  end
+  
+  def remaining_turns
+    "Remaining turns"
+  end
+
+  def winning_game
+    "You win! Well done, your Mum loves you and thinks you're special."
+  end
+
+  def losing_game(secret_word)
+    "You lose. Sorry not sorry, the word was: #{secret_word}"
+  end
+
+  def result(won, secret_word)
+    won ? winning_game : losing_game(secret_word) 
   end  
 end
